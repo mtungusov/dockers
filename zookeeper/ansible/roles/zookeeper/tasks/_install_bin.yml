@@ -1,0 +1,13 @@
+---
+- name: Download
+  get_url:
+    url: "{{ dist_url }}"
+    dest: "/tmp/{{ dist_filename }}"
+    checksum: "{{ dist_checksum }}"
+    validate_certs: no
+
+- name: Extract
+  unarchive: src=/tmp/{{ dist_filename }} dest=/opt copy=no
+
+- name: Link and Chown
+  shell: "mv {{ srv_home }}-{{ dist_version }} {{ srv_home }} && rm -f /tmp/*"

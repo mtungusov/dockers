@@ -1,0 +1,20 @@
+---
+- name: Remove src
+  shell: "rm -rf {{ item }} chdir={{ srv_home }}"
+  with_items:
+  - "./bin/windows"
+  - "./config/*"
+  - "./site-docs"
+
+- name: Create dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - "{{ srv_data }}"
+
+- name: Copy entrypoint script
+  template:
+    src: entrypoint.sh.j2
+    dest: /entrypoint.sh
+    mode: "755"

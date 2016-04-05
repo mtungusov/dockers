@@ -1,0 +1,36 @@
+---
+- name: Download
+  get_url:
+    url: "{{ dist_url }}"
+    dest: "/tmp/{{ dist_filename }}"
+    checksum: "sha1:4b1c7b1201984bca8f7f9c6c58862f6928cf0a25"
+    validate_certs: no
+
+- name: Extract
+  unarchive: src=/tmp/{{ dist_filename }} dest=/tmp copy=no
+
+- name: Build Tools
+  apt: package={{ item }} state=latest install_recommends=no
+  with_items:
+    - gcc
+    - libc6-dev
+    - make
+
+- name: Make
+  shell: "make chdir=/tmp/redis-{{ dist_version }}"
+
+- name: Remove Old Redis Bin
+  action: file path={{ srv_home }} state=absent
+
+- name: Install redis
+  shell: "make PREFIX={{ srv_home }} install chdir=/tmp/redis-{{ dist_version }}"
+
+- name: Remove Build Tools
+  apt: package={{ item }} state=absent purge=yes
+  with_items:
+    - gcc
+    - libc6-dev
+    - make
+
+- name: Clean apt
+  shell: "apt-get clean && rm -rf /tmp/* /var/tmp/*"

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+sv -w 10 stop /etc/service/schema-registry

@@ -1,0 +1,14 @@
+kafka:
+  image: "kafka:0.9.0.0"
+  user: "900:900"
+  ports:
+    - "9092:9092"
+  environment:
+    SERVICE_TAGS: "development"
+    RUN_ENV: "development"
+    ADVERTISED_HOST: "192.168.2.89"
+    PUBLIC_IP: "192.168.2.89"
+    BROKER_ID: 0
+  volumes:
+    - "/home/vagrant/kafka/data:/var/kafka"
+    - "/home/vagrant/kafka/config:/opt/kafka/config"

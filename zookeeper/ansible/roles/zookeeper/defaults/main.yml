@@ -1,0 +1,7 @@
+---
+dist_version: 3.4.6
+dist_filename: "zookeeper-{{ dist_version }}.tar.gz"
+dist_url: "http://apache-mirror.rbc.ru/pub/apache/zookeeper/zookeeper-{{ dist_version }}/{{ dist_filename }}"
+dist_checksum: "sha1:2a9e53f5990dfe0965834a525fbcad226bf93474"
+srv_home: "/opt/zookeeper"
+srv_data: "/var/opt/zookeeper"

@@ -1,0 +1,19 @@
+---
+- name: Create dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - "{{ srv_data }}"
+
+- name: Copy redis.conf
+  template:
+    src: redis.conf.j2
+    dest: /etc/redis.conf
+    mode: "644"
+
+- name: Copy entrypoint script
+  template:
+    src: entrypoint.sh.j2
+    dest: /entrypoint.sh
+    mode: "755"

@@ -1,0 +1,10 @@
+postgres:
+  container_name: db
+  image: postgres
+  # user: "999:999"
+  ports:
+  - "5432:5432"
+  environment:
+    POSTGRES_PASSWORD: "g4YsXXuLRcyfRVMP4Y"
+  # volumes:
+  # - "/Users/misha/DB/postgresql:/var/lib/postgresql/data"

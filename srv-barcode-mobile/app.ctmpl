@@ -1,0 +1,14 @@
+---
+defaults: &defaults
+  debug: true
+  app_name: "barcode-mobile"
+  connection:
+    kafka: "{{$run_env := env "RUN_ENV"}}{{range $i, $e := service (print $run_env ".kafka")}}{{if ne $i 0}},{{end}}{{$e.Address}}:{{$e.Port}}{{end}}"
+    timeout_in_ms: 500
+    redis: "redis://redis-barcode-mobile:6379"
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults

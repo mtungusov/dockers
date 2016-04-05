@@ -1,0 +1,13 @@
+#!/bin/sh
+
+. /etc/envvars
+
+set -e
+
+BIN=""
+CFG=""
+
+export HOME=/root
+
+exec 2>&1
+exec $BIN $CFG

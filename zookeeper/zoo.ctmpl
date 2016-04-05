@@ -1,0 +1,10 @@
+tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=/var/zookeeper
+clientPort=2181
+
+{{$zoos := env "ZOO_SERVERS" | split ","}}
+{{if $zoos}}
+{{range $zoo := $zoos }}{{$arr := $zoo | split ":"}}server.{{ index $arr 0}}={{ index $arr 1}}:2888:3888
+{{end}}{{end}}

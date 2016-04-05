@@ -1,0 +1,15 @@
+{
+  "disable_update_check": true,
+  "data_dir": "{{ srv_data }}",
+  "server": false,
+  "advertise_addr": "external_ip",
+  "leave_on_terminate": true,
+  "ui": false,
+  "ui_dir": "{{ srv_home }}/ui",
+  "dns_config": {
+    "allow_stale": true,
+    "max_stale": "1s"
+  },
+  "datacenter": "my_dc",
+  "encrypt": "my_token"
+}

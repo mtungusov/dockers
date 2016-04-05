@@ -1,0 +1,12 @@
+---
+defaults: &defaults
+  app_name: "my_app"
+  connection:
+    kafka: "kafka:9092"
+    timeout_in_ms: 500
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults

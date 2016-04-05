@@ -1,0 +1,8 @@
+---
+scala_version: "2.11"
+dist_version: "0.9.0.0"
+dist_filename: "kafka_{{ scala_version }}-{{ dist_version }}.tgz"
+dist_url: "http://apache-mirror.rbc.ru/pub/apache/kafka/{{ dist_version }}/{{ dist_filename }}"
+dist_checksum: "sha256:6e20a86cb1c073b83cede04ddb2e92550c77ae8139c4affb5d6b2a44447a4028"
+srv_home: "/opt/kafka"
+srv_data: "/var/opt/kafka"

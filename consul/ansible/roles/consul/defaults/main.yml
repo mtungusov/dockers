@@ -1,0 +1,12 @@
+---
+dist_version: "0.6.3"
+dist_filename: "consul_{{ dist_version }}_linux_amd64.zip"
+dist_url: "https://releases.hashicorp.com/consul/{{ dist_version }}/{{ dist_filename }}"
+dist_checksum: "sha256:b0532c61fec4a4f6d130c893fd8954ec007a6ad93effbe283a39224ed237e250"
+
+dist_filename_ui: "consul_{{ dist_version }}_web_ui.zip"
+dist_url_ui: "https://releases.hashicorp.com/consul/{{ dist_version }}/{{ dist_filename_ui}}"
+dist_checksum_ui: "sha256:93bbb300cacfe8de90fb3bd5ede7d37ae6ce014898edc520b9c96a676b2bbb72"
+
+srv_home: "/opt/consul"
+srv_data: "/var/opt/consul"

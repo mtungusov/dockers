@@ -1,0 +1,24 @@
+version: '2'
+services:
+  web:
+    image: "docker-registry.dsk2.picompany.ru/srv-barcode-mobile:0.2.0"
+    user: "900:900"
+    ports:
+    - "3000"
+    environment:
+      RUN_ENV: "development"
+      EXTERNAL_IP: "192.168.2.100"
+    volumes:
+    - "/vagrant/dockers/srv-barcode-mobile/test/config:/app/config"
+    depends_on:
+    - redis
+  redis:
+    image: "docker-registry.dsk2.picompany.ru/redis:3.0.7"
+    user: "900:900"
+    ports:
+      - "6379"
+    environment:
+      RUN_ENV: "development"
+    volumes:
+      - "/vagrant/dockers/srv-barcode-mobile/test/redis:/var/redis"
+      - "/vagrant/dockers/srv-barcode-mobile/test/redis/config:/opt/redis/config"

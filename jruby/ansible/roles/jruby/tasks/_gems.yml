@@ -1,0 +1,13 @@
+---
+- name: Create dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - "{{ gem_home }}"
+
+- name: Copy config
+  template:
+    src: gemrc.j2
+    dest: /etc/gemrc
+    mode: "644"

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo ${ZOO_ID:-1} > {{ srv_data }}/myid
+
+export HOME={{ srv_home }}
+
+ZOOBIN="$HOME/bin/zkServer.sh"
+ZOOCFG="$HOME/conf/zoo.cfg"
+ZOOLOG="$HOME/conf/log4j.properties"
+
+cat > $ZOOCFG <<'EOF'
+{% include '_zoo.cfg' %}
+
+EOF
+
+if [ -n "$ZOO_SERVERS" ]; then
+    /usr/bin/python3 -c "print('\n'.join(['server.%i=%s' % (i + 1, x) for i, x in enumerate('$ZOO_SERVERS'.split(','))]))" >> $ZOOCFG
+fi
+
+cat > $ZOOLOG <<'EOF'
+{% include '_log4j.properties' %}
+
+EOF
+
+exec 2>&1
+exec "$@"

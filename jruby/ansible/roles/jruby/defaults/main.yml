@@ -1,0 +1,8 @@
+---
+dist_version: 9.0.4.0
+dist_filename: "jruby-bin-{{ dist_version }}.tar.gz"
+dist_url: "https://s3.amazonaws.com/jruby.org/downloads/{{ dist_version }}/{{ dist_filename }}"
+dist_checksum: "sha256:fcf828c4ad5b92430a349f1e873c067a15e0952d167d07368135c513fe0d18fb"
+
+srv_home: /opt/jruby
+gem_home: /opt/gem

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export HOME={{ srv_home }}
+
+EXEC=$HOME/bin/redis-server
+CONF=/etc/redis.conf
+
+exec 2>&1
+exec "$@"

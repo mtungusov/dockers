@@ -1,0 +1,12 @@
+#!/bin/sh
+
+export HOME=/opt/confluent
+export PATH=/opt/confluent/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/jvm/java-8-oracle/bin
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
+cd $HOME
+
+exec 2>&1
+exec chpst -uconfluent /opt/confluent/bin/kafkaStart.sh

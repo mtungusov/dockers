@@ -1,0 +1,16 @@
+---
+- name: Apt install
+  apt: package=unzip state=latest install_recommends=no
+
+- name: Download
+  get_url:
+    url: "{{ dist_url }}"
+    dest: "/tmp/{{ dist_filename }}"
+    checksum: "{{ dist_checksum }}"
+    validate_certs: no
+
+- name: Extract
+  unarchive: src=/tmp/{{ dist_filename }} dest=/usr/local/bin copy=no
+
+- name: Remove
+  shell: "rm -f /tmp/*"

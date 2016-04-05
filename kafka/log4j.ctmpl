@@ -1,0 +1,9 @@
+kafka.root.logger=INFO, CONSOLE
+kafka.console.threshold=INFO
+
+log4j.rootLogger=${kafka.root.logger}
+
+log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+log4j.appender.CONSOLE.Threshold=${kafka.console.threshold}
+log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+log4j.appender.CONSOLE.layout.ConversionPattern=[%d] %p %m (%c)%n

@@ -1,0 +1,28 @@
+---
+- name: Remove src
+  shell: "rm -rf {{ item }} chdir={{ srv_home }}"
+  with_items:
+  - "./bin/*.cmd"
+  - "./conf/zoo*.cfg"
+  - "./conf/log4j.properties"
+  - "./contrib"
+  - "./dist-maven"
+  - "./docs"
+  - "./recipes"
+  - "./src"
+  - "./*.xml"
+  - "./*.txt"
+  - "./zookeeper-*.jar.*"
+
+- name: Create dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - "{{ srv_data }}"
+
+- name: Copy entrypoint script
+  template:
+    src: entrypoint.sh.j2
+    dest: /entrypoint.sh
+    mode: "755"

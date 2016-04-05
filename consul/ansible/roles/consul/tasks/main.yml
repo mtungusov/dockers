@@ -1,0 +1,6 @@
+---
+# file: roles/consul/tasks/main.yml
+
+- include: _install_bin.yml
+- include: _install_ui.yml
+- include: _configure.yml

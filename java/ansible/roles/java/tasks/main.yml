@@ -1,0 +1,17 @@
+---
+# file: roles/java/tasks/main.yml
+
+- name: Add Webupd8Team Repo
+  apt_repository: repo='ppa:webupd8team/java' state=present update_cache=yes
+
+- name: Automatically select the Oracle License
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+
+- name: Install Java
+  action: apt pkg=oracle-java{{ java_version }}-installer state=latest install_recommends=yes
+
+- name: Set Java Env
+  action: apt pkg=oracle-java{{ java_version }}-set-default state=latest install_recommends=yes
+
+- name: Add JAVA_HOME env
+  action: lineinfile dest=/etc/environment regexp=^JAVA_HOME= line=JAVA_HOME="/usr/lib/jvm/java-{{ java_version }}-oracle"

@@ -1,0 +1,54 @@
+#!/bin/bash
+
+export HOME={{ srv_home }}
+
+KFBIN="$HOME/bin/kafka-server-start.sh"
+KFCFG="$HOME/config/server.properties"
+KFLOG="$HOME/config/log4j.properties"
+
+cat > $KFCFG <<'EOF'
+{% include '_server.properties' %}
+
+EOF
+
+if [ ! -z "$ADVERTISED_HOST" ]; then
+    echo "advertised host: $ADVERTISED_HOST"
+    sed -r -i "s/(advertised.host.name)=(.*)/\1=$ADVERTISED_HOST/g" $KFCFG
+fi
+
+if [ ! -z "$ADVERTISED_PORT" ]; then
+    echo "advertised port: $ADVERTISED_PORT"
+    sed -r -i "s/(advertised.port)=(.*)/\1=$ADVERTISED_PORT/g" $KFCFG
+fi
+
+if [ -z "$BROKER_ID" ]; then
+  echo "ERROR: You must set BROKER_ID"
+  exit 1
+else
+  echo "broker id: $BROKER_ID"
+  sed -r -i "s/(broker.id)=(.*)/\1=$BROKER_ID/g" $KFCFG
+fi
+
+echo "num partitions: ${NUM_PARTITIONS:-1}"
+sed -r -i "s/(num.partitions)=(.*)/\1=${NUM_PARTITIONS:-1}/g" $KFCFG
+
+echo "auto.create.topics.enable: ${AUTO_CREATE_TOPICS:-false}"
+sed -r -i "s/(auto.create.topics.enable)=(.*)/\1=${AUTO_CREATE_TOPICS:-false}/g" $KFCFG
+
+if [ -z "$ZOO_CONNECT" ]; then
+  echo "ERROR: You must set ZOO_CONNECT"
+  exit 1
+else
+  echo "zookeeper.connect: $ZOO_CONNECT"
+  sed -r -i "s/(zookeeper.connect)=(.*)/\1=${ZOO_CONNECT}/g" $KFCFG
+fi
+
+cat > $KFLOG <<'EOF'
+{% include '_log4j.properties' %}
+
+EOF
+
+export KAFKA_HEAP_OPTS="-Xms4g -Xmx4g -XX:MetaspaceSize=96m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:G1HeapRegionSize=16M -XX:MinMetaspaceFreeRatio=50 -XX:MaxMetaspaceFreeRatio=80"
+
+exec 2>&1
+exec "$@"

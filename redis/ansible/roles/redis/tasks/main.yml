@@ -1,0 +1,5 @@
+---
+# file: roles/redis/tasks/main.yml
+
+- include: _install_bin.yml
+- include: _configure.yml

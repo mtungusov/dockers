@@ -1,0 +1,12 @@
+redis:
+  image: "redis:3.0.7"
+  user: "900:900"
+  ports:
+    - "6379"
+  environment:
+    SERVICE_TAGS: "development"
+    SERVICE_NAME: "redis-test"
+  volumes:
+    - "/home/vagrant/redis/data:/var/redis"
+    - "/home/vagrant/redis/config:/opt/redis/config"
+

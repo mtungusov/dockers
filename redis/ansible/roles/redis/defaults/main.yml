@@ -1,0 +1,11 @@
+---
+dist_version: 3.0.6
+dist_filename: "redis-{{ dist_version }}.tar.gz"
+dist_url: "http://download.redis.io/releases/{{ dist_filename }}"
+
+srv_home: /opt/redis
+srv_data: /var/opt/redis
+
+socket_file: /tmp/redis.sock
+pid_file: /var/run/redis.pid
+maxmemory: 1024mb

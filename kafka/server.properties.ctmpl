@@ -1,0 +1,30 @@
+listeners=PLAINTEXT://:9092
+port=9092
+num.network.threads=3
+num.io.threads=8
+socket.send.buffer.bytes=102400
+socket.receive.buffer.bytes=102400
+socket.request.max.bytes=104857600
+
+log.dirs=/var/kafka
+num.recovery.threads.per.data.dir=1
+delete.topic.enable=true
+
+log.retention.hours=168
+log.segment.bytes=1073741824
+log.retention.check.interval.ms=300000
+
+log.cleaner.enable=true
+log.cleanup.policy=compact
+# 24 hours
+log.cleaner.delete.retention.ms=86400000
+
+zookeeper.connection.timeout.ms=6000
+
+# COMPUTED
+advertised.host.name={{if env "ADVERTISED_HOST"}}{{env "ADVERTISED_HOST"}}{{else}}localhost{{end}}
+advertised.port=9092
+auto.create.topics.enable={{if env "AUTO_CREATE_TOPICS"}}{{env "AUTO_CREATE_TOPICS"}}{{else}}false{{end}}
+broker.id={{env "BROKER_ID"}}
+default.replication.factor={{if env "REPLICATION_FACTOR"}}{{env "REPLICATION_FACTOR"}}{{else}}1{{end}}
+zookeeper.connect={{$run_env := env "RUN_ENV"}}{{range $i, $e := service (print $run_env ".zookeeper-2181")}}{{if ne $i 0}},{{end}}{{$e.Address}}:2181{{end}}

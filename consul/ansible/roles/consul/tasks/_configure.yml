@@ -1,0 +1,14 @@
+---
+- name: Create dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - "{{ srv_home }}/config"
+  - "{{ srv_data }}"
+
+- name: Copy entrypoint script
+  template:
+    src: entrypoint.sh.j2
+    dest: /entrypoint.sh
+    mode: "755"

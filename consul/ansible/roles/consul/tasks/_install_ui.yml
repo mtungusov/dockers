@@ -1,0 +1,23 @@
+---
+- name: Download
+  get_url:
+    url: "{{ dist_url_ui }}"
+    dest: "/tmp/{{ dist_filename_ui }}"
+    checksum: "{{ dist_checksum_ui }}"
+    validate_certs: no
+
+- name: Create dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - "{{ srv_home }}/ui"
+
+- name: Extract
+  unarchive: src=/tmp/{{ dist_filename_ui }} dest={{ srv_home }}/ui copy=no
+
+- name: Remove
+  shell: "rm -f /tmp/*"
+
+- name: Apt Remove
+  apt: package=unzip state=absent purge=yes
