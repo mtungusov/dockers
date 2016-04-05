@@ -1,6 +1,9 @@
 # Description
 
-- Alpine 3.3 with glibc, bash
+Alpine 3.3 with
+- glibc
+- bash
+- gosu (https://github.com/tianon/gosu)
 
 # Build
 
