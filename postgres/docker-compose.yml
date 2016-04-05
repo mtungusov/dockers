@@ -1,10 +1,16 @@
-postgres:
+dbdata:
+  container_name: dbdata
+  image: "macadmin/postgres:9.5.2"
+  volumes:
+    - "/var/lib/postgresql/data"
+    # - "/Users/misha/DB/postgresql:/var/lib/postgresql/data"
+  command: "true"
+db:
   container_name: db
-  image: postgres
-  # user: "999:999"
+  image: "macadmin/postgres:9.5.2"
   ports:
-  - "5432:5432"
+    - "5432:5432"
+  volumes_from:
+    - dbdata
   environment:
     POSTGRES_PASSWORD: "g4YsXXuLRcyfRVMP4Y"
-  # volumes:
-  # - "/Users/misha/DB/postgresql:/var/lib/postgresql/data"
