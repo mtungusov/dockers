@@ -1,11 +1,11 @@
-FROM macadmin/consul-template:0.12.1
+FROM macadmin/consul-template:0.14.0
 MAINTAINER Mikhail Tungusov <tm@macadmin.ru>
 LABEL Description="Java 8 Oracle JRE"
 
 # Java Version and other ENV
 ENV JAVA_VERSION_MAJOR=8 \
-    JAVA_VERSION_MINOR=74 \
-    JAVA_VERSION_BUILD=02 \
+    JAVA_VERSION_MINOR=77 \
+    JAVA_VERSION_BUILD=03 \
     JAVA_PACKAGE=server-jre \
     JAVA_HOME=/opt/jdk \
     CHARSET=UTF-8 \
@@ -56,6 +56,7 @@ RUN apk upgrade --update && \
            /opt/jdk/jre/lib/ext/nashorn.jar \
            /opt/jdk/jre/lib/oblique-fonts \
            /opt/jdk/jre/lib/plugin.jar \
-           /tmp/* /var/cache/apk/*
+           /tmp/* /var/cache/apk/* && \
+    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
 
 ENV PATH ${PATH}:/opt/jdk/bin
