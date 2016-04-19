@@ -4,7 +4,7 @@
 
 # Build
 ```
-docker build -t macadmin/consul-template:0.12.1 .
+docker build -t macadmin/consul-template:0.14.0 .
 ```
 
 # Consul Template

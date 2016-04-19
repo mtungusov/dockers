@@ -6,6 +6,6 @@
 
 # Build
 ```
-docker build -t docker-registry.dsk2.picompany.ru/srv-barcode-mobile:0.2.6 .
-docker push docker-registry.dsk2.picompany.ru/srv-barcode-mobile:0.2.6
+docker build -t docker-registry.dsk2.picompany.ru/srv-barcode-mobile:0.3.0 .
+docker push docker-registry.dsk2.picompany.ru/srv-barcode-mobile:0.3.0
 ```
