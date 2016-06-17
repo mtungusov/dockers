@@ -12,4 +12,10 @@ development:
   <<: *defaults
 
 production:
-  <<: *defaults
+  debug: true
+  app_name: "barcode-mobile"
+  sqlserver:
+    host: "1csqlcl.dsk2.picompany.ru"
+    db: "barcode_prod"
+    user: "barcode_api"
+    pass: "VEJ3EKLyLccD2FxToaEx"

@@ -1,5 +1,5 @@
 FROM java-app:latest
-LABEL Type="app" Name="barcode-mobile" Version="0.3.3"
+LABEL Type="app" Name="barcode-mobile" Version="0.3.6"
 
 COPY app /app
 COPY app_runit.sh /etc/service/app/run
