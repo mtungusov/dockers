@@ -1,10 +1,10 @@
 # Description
-- Alpine 3.3
+- Alpine 3.4
 - Consul Template
 
 # Build
 ```
-docker build -t macadmin/consul-template:0.14.0 .
+docker build -t macadmin/consul-template:0.15.0 .
 ```
 
 # Consul Template
