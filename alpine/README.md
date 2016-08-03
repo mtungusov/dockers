@@ -1,6 +1,6 @@
 # Description
 
-Alpine 3.3 with
+Alpine 3.4 with
 - glibc
 - bash
 - gosu (https://github.com/tianon/gosu)
@@ -8,5 +8,5 @@ Alpine 3.3 with
 # Build
 
 ```
-docker build -t macadmin/alpine:3.3 .
+docker build -t macadmin/alpine:3.4 .
 ```
