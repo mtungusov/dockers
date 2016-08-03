@@ -1,6 +1,6 @@
-FROM java8:latest
+FROM java:8.102.14
 
-LABEL Description="Alpine 3.3, Java8, Runit 2.1.2"
+LABEL Description="Alpine 3.4, Java 8, Runit 2.1.2"
 
 ADD start-runit.sh /start-runit.sh
 
