@@ -1,0 +1,15 @@
+version: '3'
+services:
+  db:
+    cap_add:
+      - SYS_PTRACE
+    image: "microsoft/mssql-server-linux"
+    ports:
+    - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Qazwsx1234#"
+    volumes:
+      - "sqlvol:/var/opt/mssql"
+volumes:
+  sqlvol:
